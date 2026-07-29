@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ppkd_b7/day_10/image.dart';
+import 'package:ppkd_b7/day_11/home.dart';
+import 'package:ppkd_b7/day_11/routing.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +32,13 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: ShowImageDay10(),
+      //PUSH NAMED
+      initialRoute: "/",
+      routes: {
+        "/": (context) => RoutingDay11(),
+        "/home": (context) => HomeRoutingDay11(),
+      },
+      // home: RoutingDay11(),
     );
   }
 }
