@@ -18,7 +18,7 @@ class StylingDay5 extends StatelessWidget {
         title: Text("Styling Day 5"),
         centerTitle: true,
         actions: [Text("1"), Text("2")],
-        leading: Icon(Icons.arrow_back),
+        // leading: Icon(Icons.arrow_back),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

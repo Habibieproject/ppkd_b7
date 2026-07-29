@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:ppkd_b7/day_11/contoh_function.dart';
 import 'package:ppkd_b7/day_11/home.dart';
+import 'package:ppkd_b7/day_11/save_button.dart';
+import 'package:ppkd_b7/day_8/stack.dart';
 import 'package:ppkd_b7/extension/navigator.dart';
+import 'package:ppkd_b7/utils/button.dart';
 
-/// [RoutingDay11] adalah widget halaman utama untuk materi Routing dan Navigasi pada Day 11.
-/// Halaman ini mendemonstrasikan berbagai cara untuk berpindah halaman di Flutter menggunakan Navigator Extension.
 class RoutingDay11 extends StatelessWidget {
-  /// Konstruktor untuk [RoutingDay11].
-  /// [super.key] digunakan untuk meneruskan key ke constructor superclass [StatelessWidget].
   const RoutingDay11({super.key});
 
   @override
-  /// Method [build] berfungsi untuk menggambarkan struktur tampilan (UI) dari halaman ini.
-  /// Method ini akan dijalankan ulang (rebuild) setiap kali Flutter perlu memperbarui tampilan.
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -24,9 +22,10 @@ class RoutingDay11 extends StatelessWidget {
           Center(
             child: ElevatedButton(
               onPressed: () {
-                // context.push berasal dari extension navigator.dart.
-                // Fungsi ini menambahkan (push) halaman HomeRoutingDay11 ke atas tumpukan (stack) navigasi saat ini.
-                // Pengguna dapat kembali ke halaman ini dengan menekan tombol back atau Navigator.pop.
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => HomeRoutingDay11()),
+                // );
                 context.push(HomeRoutingDay11());
               },
               child: Text("Push"),
@@ -35,8 +34,7 @@ class RoutingDay11 extends StatelessWidget {
           Center(
             child: ElevatedButton(
               onPressed: () {
-                // context.pushNamed berasal dari extension navigator.dart.
-                // Fungsi ini membuka halaman baru berdasarkan nama rute yang telah didaftarkan di MaterialApp (misalnya "/home").
+                // Navigator.pushNamed(context, "/home");
                 context.pushNamed("/home");
               },
               child: Text("PushNamed"),
@@ -45,29 +43,80 @@ class RoutingDay11 extends StatelessWidget {
           Center(
             child: ElevatedButton(
               onPressed: () {
-                // context.pushReplacement berasal dari extension navigator.dart.
-                // Fungsi ini menggantikan (replace) halaman saat ini dengan halaman HomeRoutingDay11.
-                // Halaman saat ini akan dihapus dari tumpukan navigasi, sehingga jika pengguna menekan back,
-                // mereka tidak akan kembali ke halaman ini melainkan ke halaman sebelumnya lagi.
+                // Navigator.pushReplacement(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => HomeRoutingDay11()),
+                // );
                 context.pushReplacement(HomeRoutingDay11());
               },
               child: Text("PushReplacement"),
             ),
           ),
-          Center(
-            child: ElevatedButton(
-              onPressed: () {
-                // context.pushAndRemoveAll berasal dari extension navigator.dart.
-                // Fungsi ini membuka halaman HomeRoutingDay11 dan menghapus seluruh rute (halaman)
-                // yang ada sebelumnya dari tumpukan navigasi, menjadikannya halaman pertama/satu-satunya di tumpukan.
-                context.pushAndRemoveAll(HomeRoutingDay11());
-              },
-              child: Text("PushRemoveUntil"),
-            ),
+          tombolPush(context),
+
+          //REUSABLE
+          buttonNavigator(
+            context,
+            "Push",
+            onPressed: () {
+              context.push(Tugas4Flutter());
+            },
           ),
+          buttonNavigator(
+            context,
+            "PushNamed",
+            onPressed: () {
+              context.pushNamed("/home");
+            },
+          ),
+          buttonNavigator(
+            context,
+            "PushReplacement",
+            onPressed: () {
+              context.push(StackDay8());
+            },
+          ),
+          buttonNavigator(context, "PushRemoveAll"),
+          DefaultButton(text: "Simpan", onPressed: () {}),
+          SaveButton(),
         ],
       ),
     );
   }
-}
 
+  Center tombolPush(BuildContext context) {
+    return Center(
+      child: ElevatedButton(
+        onPressed: () {
+          // Navigator.pushReplacement(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => HomeRoutingDay11()),
+          // );
+          context.pushReplacement(HomeRoutingDay11());
+        },
+        child: Text("PushReplacement"),
+      ),
+    );
+  }
+
+  Center buttonNavigator(
+    BuildContext context,
+    String text, {
+    void Function()? onPressed,
+  }) {
+    return Center(
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+        onPressed: onPressed,
+        // () {
+        //   // Navigator.push(
+        //   //   context,
+        //   //   MaterialPageRoute(builder: (context) => HomeRoutingDay11()),
+        //   // );
+        //   context.push(HomeRoutingDay11());
+        // },
+        child: Text(text, style: TextStyle(color: Colors.white, fontSize: 16)),
+      ),
+    );
+  }
+}

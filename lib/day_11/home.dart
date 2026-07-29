@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ppkd_b7/day_11/home_2.dart';
+import 'package:ppkd_b7/day_11/save_button.dart';
 import 'package:ppkd_b7/extension/navigator.dart';
 
 /// [HomeRoutingDay11] adalah widget halaman (screen) tujuan pertama.
@@ -43,9 +44,9 @@ class HomeRoutingDay11 extends StatelessWidget {
               child: Text("PushRemoveUntil"),
             ),
           ),
+          SaveButton(),
         ],
       ),
     );
   }
 }
-
