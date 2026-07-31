@@ -17,6 +17,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
+  bottom_navigator:
+    dependency: "direct main"
+    description:
+      name: bottom_navigator
+      sha256: "76c60ef9a56a52d9818f0e3f46496f637f36bb50bd636d64118bf23575cc294f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.5"
   characters:
     dependency: transitive
     description:

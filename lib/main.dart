@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ppkd_b7/day_11/home.dart';
-import 'package:ppkd_b7/day_11/routing.dart';
+import 'package:ppkd_b7/day_13/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
       //PUSH NAMED
       initialRoute: "/",
       routes: {
-        "/": (context) => RoutingDay11(),
+        "/": (context) => LoginDay13ByAdul(),
         "/home": (context) => HomeRoutingDay11(),
       },
       // home: RoutingDay11(),
