@@ -39,6 +39,7 @@ dependencies:
   fluttertoast: ^9.0.0
   shared_preferences: ^2.5.5
   bottom_navigator: ^0.0.5
+  intl: ^0.20.3
 
 dev_dependencies:
   flutter_test:
