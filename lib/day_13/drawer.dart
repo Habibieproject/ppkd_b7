@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ppkd_b7/day_10/image.dart';
 import 'package:ppkd_b7/day_13/input_widget/input_widget.dart';
+import 'package:ppkd_b7/day_15/list.dart';
+import 'package:ppkd_b7/day_15/list_model.dart';
+import 'package:ppkd_b7/day_15/list_of_map.dart';
 import 'package:ppkd_b7/day_6/expanded.dart';
 import 'package:ppkd_b7/day_8/stack.dart';
 import 'package:ppkd_b7/extension/navigator.dart';
@@ -29,10 +32,13 @@ class _DrawerDay13State extends State<DrawerDay13> {
 
   // Daftar halaman/widget yang akan dirender di bagian body Scaffold secara dinamis.
   final List<Widget> _widgetOptions = [
-    ExpandedDay6(),     // Halaman latihan Expanded Day 6
-    StackDay8(),        // Halaman latihan Stack Day 8
-    ShowImageDay10(),   // Halaman latihan Image Day 10
+    ExpandedDay6(), // Halaman latihan Expanded Day 6
+    StackDay8(), // Halaman latihan Stack Day 8
+    ShowImageDay10(), // Halaman latihan Image Day 10
     InputWidgetDay13(), // Halaman latihan Input Widget Day 13
+    ListDataDay15(),
+    ListOfMapDay15(),
+    ListOfModelDay15(),
   ];
 
   @override
@@ -74,6 +80,27 @@ class _DrawerDay13State extends State<DrawerDay13> {
               title: Text("Input Widget"),
               onTap: () {
                 changeBottom(3); // Berpindah ke index 3 (InputWidgetDay13)
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.input),
+              title: Text("List Data"),
+              onTap: () {
+                changeBottom(4); // Berpindah ke index 3 (InputWidgetDay13)
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.input),
+              title: Text("List of Map"),
+              onTap: () {
+                changeBottom(5); // Berpindah ke index 3 (InputWidgetDay13)
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.input),
+              title: Text("List of Model"),
+              onTap: () {
+                changeBottom(6); // Berpindah ke index 3 (InputWidgetDay13)
               },
             ),
           ],
