@@ -4,6 +4,7 @@ import 'package:ppkd_b7/day_13/input_widget/input_widget.dart';
 import 'package:ppkd_b7/day_15/list.dart';
 import 'package:ppkd_b7/day_15/list_model.dart';
 import 'package:ppkd_b7/day_15/list_of_map.dart';
+import 'package:ppkd_b7/day_16/text_form_field.dart';
 import 'package:ppkd_b7/day_6/expanded.dart';
 import 'package:ppkd_b7/day_8/stack.dart';
 import 'package:ppkd_b7/extension/navigator.dart';
@@ -39,6 +40,7 @@ class _DrawerDay13State extends State<DrawerDay13> {
     ListDataDay15(),
     ListOfMapDay15(),
     ListOfModelDay15(),
+    TextFormFieldDay16(),
   ];
 
   @override
@@ -101,6 +103,13 @@ class _DrawerDay13State extends State<DrawerDay13> {
               title: Text("List of Model"),
               onTap: () {
                 changeBottom(6); // Berpindah ke index 3 (InputWidgetDay13)
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.input),
+              title: Text("Text Form Field"),
+              onTap: () {
+                changeBottom(7); // Berpindah ke index 3 (InputWidgetDay13)
               },
             ),
           ],
