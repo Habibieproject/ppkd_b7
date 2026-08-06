@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
+// Widget ListOfMapDay15 menampilkan data dinamis dari struktur data List of Maps 
+// menggunakan widget ListView.separated untuk menampilkan baris pemisah antar item.
 class ListOfMapDay15 extends StatelessWidget {
   ListOfMapDay15({super.key});
 
-  List<Map<String, dynamic>> dataProduk = [
+  // Dummy data menggunakan tipe List<Map<String, dynamic>>. 
+  // Setiap elemen map mewakili informasi produk (nama, harga, asal).
+  final List<Map<String, dynamic>> dataProduk = [
     {"nama": "Apel", "harga": 25000, "asal": "Jepang"},
     {"nama": "Pisang", "harga": 15000, "asal": "Indonesia"},
     {"nama": "Jeruk", "harga": 20000, "asal": "Spanyol"},
@@ -25,19 +29,25 @@ class ListOfMapDay15 extends StatelessWidget {
     {"nama": "Alpukat", "harga": 40000, "asal": "Meksiko"},
     {"nama": "Blueberry", "harga": 60000, "asal": "Kanada"},
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // ListView.separated mempermudah pembuatan pemisah (separator) antar item list.
       body: ListView.separated(
+        // separatorBuilder mendefinisikan widget pemisah di antara setiap baris.
         separatorBuilder: (context, index) {
-          return SizedBox(height: 8);
+          return const SizedBox(height: 8);
         },
         itemCount: dataProduk.length,
+        // itemBuilder membangun tampilan per baris sesuai dengan data dari list map.
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
+            // Pewarnaan selang-seling (zebra striping) menggunakan operasi modulo index.
             tileColor: index % 2 == 0 ? Colors.red[200] : Colors.grey[200],
-            title: Text(dataProduk[index]["nama"]),
-            subtitle: Text(dataProduk[index]["asal"]),
+            // Mengakses nilai Map berdasarkan key string ("nama", "asal", "harga").
+            title: Text(dataProduk[index]["nama"] ?? ""),
+            subtitle: Text(dataProduk[index]["asal"] ?? ""),
             trailing: Text(dataProduk[index]["harga"].toString()),
           );
         },
@@ -45,3 +55,4 @@ class ListOfMapDay15 extends StatelessWidget {
     );
   }
 }
+

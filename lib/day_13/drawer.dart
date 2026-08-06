@@ -37,10 +37,10 @@ class _DrawerDay13State extends State<DrawerDay13> {
     StackDay8(), // Halaman latihan Stack Day 8
     ShowImageDay10(), // Halaman latihan Image Day 10
     InputWidgetDay13(), // Halaman latihan Input Widget Day 13
-    ListDataDay15(),
-    ListOfMapDay15(),
-    ListOfModelDay15(),
-    TextFormFieldDay16(),
+    ListDataDay15(), // Halaman latihan List buah sederhana Day 15
+    ListOfMapDay15(), // Halaman latihan List data dari Map Day 15
+    ListOfModelDay15(), // Halaman latihan List data dari Model Day 15
+    TextFormFieldDay16(), // Halaman latihan Form Validasi Day 16
   ];
 
   @override
@@ -84,32 +84,36 @@ class _DrawerDay13State extends State<DrawerDay13> {
                 changeBottom(3); // Berpindah ke index 3 (InputWidgetDay13)
               },
             ),
+            // Pilihan Menu 5: List Data
             ListTile(
-              leading: Icon(Icons.input),
+              leading: Icon(Icons.list),
               title: Text("List Data"),
               onTap: () {
-                changeBottom(4); // Berpindah ke index 3 (InputWidgetDay13)
+                changeBottom(4); // Berpindah ke index 4 (ListDataDay15)
               },
             ),
+            // Pilihan Menu 6: List of Map
             ListTile(
-              leading: Icon(Icons.input),
+              leading: Icon(Icons.map),
               title: Text("List of Map"),
               onTap: () {
-                changeBottom(5); // Berpindah ke index 3 (InputWidgetDay13)
+                changeBottom(5); // Berpindah ke index 5 (ListOfMapDay15)
               },
             ),
+            // Pilihan Menu 7: List of Model
             ListTile(
-              leading: Icon(Icons.input),
+              leading: Icon(Icons.layers),
               title: Text("List of Model"),
               onTap: () {
-                changeBottom(6); // Berpindah ke index 3 (InputWidgetDay13)
+                changeBottom(6); // Berpindah ke index 6 (ListOfModelDay15)
               },
             ),
+            // Pilihan Menu 8: Text Form Field
             ListTile(
-              leading: Icon(Icons.input),
+              leading: Icon(Icons.text_fields),
               title: Text("Text Form Field"),
               onTap: () {
-                changeBottom(7); // Berpindah ke index 3 (InputWidgetDay13)
+                changeBottom(7); // Berpindah ke index 7 (TextFormFieldDay16)
               },
             ),
           ],
@@ -120,3 +124,4 @@ class _DrawerDay13State extends State<DrawerDay13> {
     );
   }
 }
+

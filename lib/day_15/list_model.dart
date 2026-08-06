@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:ppkd_b7/day_15/model/buah_model.dart';
 
+// Widget ListOfModelDay15 menampilkan data dinamis dari struktur data List of Models.
+// Menggunakan class model (BuahModel) memberikan keuntungan type-safety (keamanan tipe data) 
+// dibanding menggunakan Map, sehingga meminimalisir kesalahan pengetikan key (typo).
 class ListOfModelDay15 extends StatelessWidget {
   ListOfModelDay15({super.key});
 
-  List<BuahModel> dataProduk = [
+  // Dummy data menggunakan tipe List<BuahModel> yang berisi instansi objek BuahModel.
+  final List<BuahModel> dataProduk = [
     BuahModel(nama: "Apel", harga: "25000", asal: "Jepang"),
     BuahModel(nama: "Pisang", harga: "15000", asal: "Indonesia"),
     BuahModel(nama: "Jeruk", harga: "20000", asal: "Spanyol"),
@@ -26,23 +30,29 @@ class ListOfModelDay15 extends StatelessWidget {
     BuahModel(nama: "Alpukat", harga: "40000", asal: "Meksiko"),
     BuahModel(nama: "Blueberry", harga: "60000", asal: "Kanada"),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // Menggunakan ListView.separated untuk menyusun item secara teratur dengan pemisah di antaranya.
       body: ListView.separated(
         separatorBuilder: (context, index) {
-          return SizedBox(height: 8);
+          return const SizedBox(height: 8);
         },
         itemCount: dataProduk.length,
         itemBuilder: (BuildContext context, int index) {
+          // Mengakses data per objek dari index list.
+          final produk = dataProduk[index];
           return ListTile(
             tileColor: index % 2 == 0 ? Colors.red[200] : Colors.grey[200],
-            title: Text(dataProduk[index].nama),
-            subtitle: Text(dataProduk[index].asal),
-            trailing: Text(dataProduk[index].harga.toString()),
+            // Mengakses properti objek secara langsung (type-safe).
+            title: Text(produk.nama),
+            subtitle: Text(produk.asal),
+            trailing: Text(produk.harga),
           );
         },
       ),
     );
   }
 }
+
