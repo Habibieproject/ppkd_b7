@@ -5,7 +5,7 @@ import 'package:ppkd_b7/day_18/database/db_helper.dart';
 import 'package:ppkd_b7/day_18/models/user_login_model.dart';
 import 'package:ppkd_b7/extension/navigator.dart';
 
-// Halaman Login Day 17 (StatefulWidget untuk mengelola controller input teks dan interaksi user).
+// Halaman Login & Register Day 18 menggunakan SQLite (sqflite) untuk otentikasi lokal.
 class LoginDay18SQFLITE extends StatefulWidget {
   const LoginDay18SQFLITE({super.key});
 
@@ -14,14 +14,19 @@ class LoginDay18SQFLITE extends StatefulWidget {
 }
 
 class _LoginDay18SQFLITEState extends State<LoginDay18SQFLITE> {
-  // Controller untuk membaca dan mengontrol isi field input email.
+  // Controller untuk menangani input email dan password dari TextField.
   final TextEditingController emailC = TextEditingController();
   final TextEditingController passwordC = TextEditingController();
+
+  // Global key untuk mengidentifikasi dan memvalidasi Form.
   final _formKey = GlobalKey<FormState>();
+
+  // Fungsi untuk mendaftarkan akun pengguna baru ke database SQLite.
   void register() async {
     final user = emailC.text.trim();
     final pass = passwordC.text;
 
+    // Validasi dasar bahwa inputan tidak boleh kosong.
     if (user.isEmpty || pass.isEmpty) {
       ScaffoldMessenger.of(
         context,
@@ -29,12 +34,15 @@ class _LoginDay18SQFLITEState extends State<LoginDay18SQFLITE> {
       return;
     }
 
+    // Membuat objek UserModelSQL dari input form.
     final pengguna = UserModelSQL(email: user, password: pass);
 
+    // Menyimpan data pengguna ke database SQLite melalui DBHelper.
     bool success = await DBHelper().registerUser(pengguna);
 
     if (!mounted) return;
 
+    // Menampilkan notifikasi SnackBar sesuai hasil pendaftaran.
     if (success) {
       ScaffoldMessenger.of(
         context,
@@ -46,6 +54,7 @@ class _LoginDay18SQFLITEState extends State<LoginDay18SQFLITE> {
     }
   }
 
+  // Fungsi untuk memverifikasi login pengguna menggunakan data di SQLite.
   void login() async {
     final user = emailC.text.trim();
     final pass = passwordC.text;
@@ -57,24 +66,26 @@ class _LoginDay18SQFLITEState extends State<LoginDay18SQFLITE> {
       return;
     }
 
+    // Memeriksa pencocokan kredensial email & password di database.
     final pengguna = await DBHelper().loginUser(user, pass);
 
     if (!mounted) return;
 
     if (pengguna != null) {
-      context.pushAndRemoveAll(BottomNavDay13());
+      // Jika berhasil login, navigasi ke halaman utama (BottomNavDay13).
+      context.pushAndRemoveAll(const BottomNavDay13());
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Login gagal! email atau Password salah.'),
-        ), // SnackBar
+        ),
       );
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    // Warna latar belakang utama (Dark Blue) & warna tombol sosial media.
+    // Warna tema halaman (Dark Blue).
     const primaryBgColor = Color(0xFF00224D);
     const socialBtnColor = Color(0xFF0A2E5C);
 
@@ -90,11 +101,11 @@ class _LoginDay18SQFLITEState extends State<LoginDay18SQFLITE> {
             size: 20,
           ),
           onPressed: () {
-            // Aksi tombol kembali (jika diperlukan)
+            // Aksi tombol kembali
           },
         ),
         title: const Text(
-          'Login',
+          'Login (SQLite)',
           style: TextStyle(
             color: Colors.white,
             fontSize: 18,
@@ -139,21 +150,16 @@ class _LoginDay18SQFLITEState extends State<LoginDay18SQFLITE> {
 
                 const SizedBox(height: 40),
 
-                // Input Email
+                // Input Field: Email
                 TextFormField(
                   validator: (value) {
-                    // Aturan validasi email:
-                    // 1. Tidak boleh kosong.
-                    // 2. Harus mengandung karakter '@'.
-                    // 3. Harus diakhiri/mengandung domain 'ppkd.com'.
                     if (value == null || value.isEmpty) {
                       return "Email tidak boleh kosong";
                     } else if (!value.contains('@')) {
                       return "Email tidak valid";
                     }
-                    return null; // Mengembalikan null berarti input valid.
+                    return null; // Input valid
                   },
-
                   controller: emailC,
                   style: const TextStyle(color: Colors.white),
                   decoration: const InputDecoration(
@@ -174,19 +180,15 @@ class _LoginDay18SQFLITEState extends State<LoginDay18SQFLITE> {
 
                 const SizedBox(height: 20),
 
-                // Input Password
+                // Input Field: Password
                 TextFormField(
                   validator: (value) {
-                    // Aturan validasi konfirmasi password:
-                    // 1. Tidak boleh kosong.
-                    // 2. Minimal 8 karakter.
-                    // 3. Harus sama nilainya dengan input passwordController.
                     if (value == null || value.isEmpty) {
                       return "Password tidak boleh kosong";
                     } else if (value.length < 8) {
                       return "Password kurang dari 8 karakter";
                     }
-                    return null;
+                    return null; // Input valid
                   },
                   controller: passwordC,
                   obscureText: true,
@@ -206,7 +208,7 @@ class _LoginDay18SQFLITEState extends State<LoginDay18SQFLITE> {
 
                 const SizedBox(height: 40),
 
-                // Tombol Login Utama
+                // Tombol Login
                 tombolLoginRegister(
                   primaryBgColor,
                   onPressed: () {
@@ -218,6 +220,7 @@ class _LoginDay18SQFLITEState extends State<LoginDay18SQFLITE> {
                 ),
                 const SizedBox(height: 14),
 
+                // Tombol Register
                 tombolLoginRegister(
                   primaryBgColor,
                   onPressed: () {
@@ -230,7 +233,7 @@ class _LoginDay18SQFLITEState extends State<LoginDay18SQFLITE> {
 
                 const SizedBox(height: 30),
 
-                // Pembatas / Divider "Or"
+                // Divider "Or"
                 Row(
                   children: const [
                     Expanded(
@@ -257,7 +260,6 @@ class _LoginDay18SQFLITEState extends State<LoginDay18SQFLITE> {
                   height: 52,
                   child: ElevatedButton.icon(
                     onPressed: () {
-                      // Navigasi alternatif ke halaman DrawerDay13
                       context.push(const DrawerDay13());
                     },
                     icon: Image.asset('assets/images/Fb.png', cacheHeight: 30),
@@ -318,9 +320,7 @@ class _LoginDay18SQFLITEState extends State<LoginDay18SQFLITE> {
                       style: TextStyle(color: Colors.white54, fontSize: 13),
                     ),
                     GestureDetector(
-                      onTap: () {
-                        // Aksi navigasi ke halaman Sign In jika ada
-                      },
+                      onTap: () {},
                       child: const Text(
                         'Sign In',
                         style: TextStyle(
@@ -342,6 +342,7 @@ class _LoginDay18SQFLITEState extends State<LoginDay18SQFLITE> {
     );
   }
 
+  // Helper widget kustom untuk membuat tombol bersuara rounded (Reusable Login/Register button)
   SizedBox tombolLoginRegister(
     Color primaryBgColor, {
     required void Function()? onPressed,
@@ -362,7 +363,7 @@ class _LoginDay18SQFLITEState extends State<LoginDay18SQFLITE> {
         ),
         child: Text(
           teks,
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ),
     );
