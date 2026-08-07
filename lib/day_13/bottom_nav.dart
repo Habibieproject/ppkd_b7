@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:ppkd_b7/day_10/image.dart';
 // Import PreferenceHandler & LoginDay17 dari Day 17 untuk fitur Logout & Navigasi Session
 import 'package:ppkd_b7/day_17/service/preference_handler.dart';
-import 'package:ppkd_b7/day_17/views/login_day_17.dart';
+import 'package:ppkd_b7/day_18/views/data_user.dart';
+import 'package:ppkd_b7/day_18/views/login_day_18.dart';
 import 'package:ppkd_b7/day_6/expanded.dart';
 import 'package:ppkd_b7/day_8/stack.dart';
 import 'package:ppkd_b7/extension/navigator.dart';
@@ -32,6 +33,7 @@ class _BottomNavDay13State extends State<BottomNavDay13> {
     const ExpandedDay6(),
     const StackDay8(),
     const ShowImageDay10(),
+    const DataUserDay18(),
     const LogoutScreen(), // Halaman logout (terhubung ke Day 17)
   ];
 
@@ -40,6 +42,7 @@ class _BottomNavDay13State extends State<BottomNavDay13> {
     BottomNavItem(icon: Icons.home, label: "Home"),
     BottomNavItem(icon: Icons.school, label: "School"),
     BottomNavItem(icon: Icons.business, label: "Business"),
+    BottomNavItem(icon: Icons.person, label: "User"),
     BottomNavItem(icon: Icons.logout, label: "Logout"),
   ];
 
@@ -72,12 +75,9 @@ class LogoutScreen extends StatelessWidget {
         PreferenceHandler.logOut();
 
         // 2. Mengarahkan pengguna kembali ke halaman LoginDay17 serta menghapus seluruh tumpukan navigasi sebelumnya (pushAndRemoveAll).
-        context.pushAndRemoveAll(const LoginDay17());
+        context.pushAndRemoveAll(const LoginDay18SQFLITE());
       },
-      child: const Center(
-        child: Icon(Icons.logout, size: 48),
-      ),
+      child: const Center(child: Icon(Icons.logout, size: 48)),
     );
   }
 }
-

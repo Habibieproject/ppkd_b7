@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:ppkd_b7/day_13/bottom_nav.dart';
 import 'package:ppkd_b7/day_17/service/preference_handler.dart';
-import 'package:ppkd_b7/day_17/views/login_day_17.dart';
+import 'package:ppkd_b7/day_18/views/login_day_18.dart';
 import 'package:ppkd_b7/extension/navigator.dart';
 
 // Widget SplashScreenDay17 berupa StatefulWidget untuk menangani proses async (delay & pengecekan session login saat awal aplikasi dibuka).
@@ -32,7 +32,7 @@ class _SplashScreenDay17State extends State<SplashScreenDay17> {
       context.push(const BottomNavDay13());
     } else {
       // Jika belum login, arahkan ke halaman LoginDay17.
-      context.push(const LoginDay17());
+      context.push(const LoginDay18SQFLITE());
     }
   }
 
@@ -40,9 +40,7 @@ class _SplashScreenDay17State extends State<SplashScreenDay17> {
   Widget build(BuildContext context) {
     return Scaffold(
       // Menampilkan animasi Lottie di tengah layar sebagai visual splash screen.
-      body: Center(
-        child: Lottie.asset("assets/animation/error.json"),
-      ),
+      body: Center(child: Lottie.asset("assets/animation/error.json")),
     );
   }
 }
