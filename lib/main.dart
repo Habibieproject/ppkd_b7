@@ -3,7 +3,9 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:ppkd_b7/day_11/home.dart';
 import 'package:ppkd_b7/day_17/service/preference_handler.dart';
 import 'package:ppkd_b7/day_20/constants/app_theme.dart';
-import 'package:ppkd_b7/day_20/views/test_day_20.dart';
+import 'package:ppkd_b7/day_20/views/register_toefl_page.dart';
+import 'package:ppkd_b7/day_23/views/login_day_23.dart';
+import 'package:ppkd_b7/random_picker/random_picker_screen.dart';
 
 // Fungsi main merupakan entry point utama dari aplikasi Flutter.
 // async digunakan karena kita perlu menunggu (await) inisialisasi async sebelum runApp dipanggil.
@@ -41,7 +43,9 @@ class MyApp extends StatelessWidget {
       routes: {
         // Halaman Splash Screen Day 17 sebagai rute default (/).
         // Halaman ini akan mengecek session login dan mengarahkan user ke LoginDay17 atau BottomNavDay13.
-        "/": (context) => const TestDay20(),
+        "/": (context) => const RandomPickerScreen(),
+        "/login_day_23": (context) => const LoginDay23(),
+        "/toefl_register": (context) => const RegisterToeflPage(),
         // Halaman utama day 11 (/home).
         "/home": (context) => HomeRoutingDay11(),
       },
