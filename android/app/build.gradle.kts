@@ -16,7 +16,7 @@ plugins {
 
 android {
     namespace = "com.ppkd.ppkd_b7"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 37
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
